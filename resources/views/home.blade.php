@@ -65,6 +65,7 @@
         let userLatitude = document.getElementById('latitude');
         let userLongitude = document.getElementById('longitude');
         let coords = new L.LatLng('53.413764', '-6.387348');
+        let userName = "{{Auth::user()->name}}";
         if (userLatitude.value !== '0' && userLongitude.value !== '0') {
             coords = new L.LatLng(userLatitude.value, userLongitude.value);
         }
@@ -84,14 +85,12 @@
             zoomOffset: -1,
         }).addTo(map);
 
-        console.log(coords)
-
          map.setView(coords, 13); 
 
         let marker = new L.Marker(coords);
 
         map.addLayer(marker);
-        marker.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+        marker.bindPopup(`<b>Estas aquí!</b><br />${userName}.`).openPopup();
 
 
         function onMapClick(e) {
@@ -103,7 +102,7 @@
             userLongitude.value = e.latlng.lng.toFixed(4);
             marker = new L.Marker(e.latlng);
             map.addLayer(marker);
-            marker.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+            marker.bindPopup(`<b>Estas aquí!</b><br />${userName}.`).openPopup();
         }
 
         map.on('click', onMapClick);
