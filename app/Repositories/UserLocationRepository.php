@@ -59,6 +59,32 @@ class UserLocationRepository implements UserLocationRepositoryInterface
         ];
             
     }
+
+    public function saveWeb($data)
+    {
+        try {
+            $user = User::where('id', $data["user_id"])->firstOrFail();
+            if(!$user->location) {
+                $location = $user->location()->create([
+                    'latitude' => $data["latitude"],
+                    'longitude' => $data["longitude"]
+                ]);
+            } else {
+                $location = $user->location->update([
+                    'latitude' => $data["latitude"],
+                    'longitude' => $data["longitude"]
+                ]);
+            }
+        } catch(Exception $e) {
+            return ['error' => 'Usuario no encontrado'];
+        }
+        return [
+            'message' => '¡Ubicación guardada exitosamente!',
+            'location' => $location
+        ];
+            
+    }
+
     public function delete()
     {
         return null;

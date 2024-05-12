@@ -6,6 +6,7 @@ interface UserLocationRepositoryInterface
 {
     public function get($id);
     public function save($data);
+    public function saveWeb($data);
     public function update($id, $data);
     public function delete();
 }

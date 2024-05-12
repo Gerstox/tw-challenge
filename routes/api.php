@@ -27,7 +27,7 @@ Route::group([
 ], function ($router) {
     Route::get('users', 'App\Http\Controllers\UserController@getAll');
     Route::get('users/{id}', 'App\Http\Controllers\UserController@getOne');
-    Route::get('users/location/{id}', 'App\Http\Controllers\UserController@getLocation');
+    Route::get('users/location/{id}', 'App\Http\Controllers\UserController@getLocation')->name('getLocation');
     Route::post('users/location', 'App\Http\Controllers\UserController@saveLocation');
     Route::put('users/location/{id}', 'App\Http\Controllers\UserController@updateLocation');
 });

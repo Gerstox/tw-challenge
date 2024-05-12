@@ -10,3 +10,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/location', [App\Http\Controllers\UserLocationController::class, 'save'])->name('location.save');
