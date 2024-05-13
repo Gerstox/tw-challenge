@@ -47,7 +47,13 @@ class UserController extends Controller
     public function getlocation(string $id)
     {
         $location = $this->locationRepository->get($id);
-        return response()->json($location, 201);
+        return response()->json($location, 200);
+    }
+
+    public function getlocationByUser(string $userId)
+    {
+        $location = $this->locationRepository->getByUser($userId);
+        return response()->json($location, 200);
     }
 
     public function savelocation(Request $request)
@@ -64,7 +70,7 @@ class UserController extends Controller
 
         $location = $this->locationRepository->save($validator->validate());
 
-        return response()->json($location, 201);
+        return response()->json($location, 200);
     }
 
     public function updatelocation(string $id, Request $request)

@@ -21,6 +21,15 @@ class UserLocationRepository implements UserLocationRepositoryInterface
             'location' => $location
         ];
     }
+    public function getByUser($userId)
+    {
+        try {
+            $location = UserLocation::where('user_id', $userId)->firstOrFail();
+        } catch(Exception $e) {
+            return ['error' => 'Ubicación no encontrada'];
+        }
+        return $location;
+    }
     public function save($data)
     {
         try {
