@@ -102,9 +102,12 @@ class AuthController extends Controller
             ['password' => bcrypt($request->password)]
         ));
 
+        $credentials = request(['email', 'password']);
+        $token = auth()->guard('api')->attempt($credentials);
         return response()->json([
             'message' => '¡Usuario registrado exitosamente!',
-            'user' => $user
+            'user' => $user,
+            'access_token' => $token
         ], 201);
 
     }
